@@ -1,5 +1,7 @@
 # Decorated App Bar
 
+![Flutter Test](https://github.com/tomoya55/decorated_app_bar/workflows/Flutter%20Test/badge.svg)
+
 TODO(tom): update description
 Love the material DecoratedAppBar? Do you want to add more color to the DecoratedAppBar? Here's a DecoratedAppBar.
 
