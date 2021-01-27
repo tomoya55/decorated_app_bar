@@ -168,7 +168,7 @@ class DecoratedAppBar extends StatefulWidget implements PreferredSizeWidget {
     this.elevation,
     this.shadowColor,
     this.shape,
-    this.backgroundColor,
+    this.decoration,
     this.foregroundColor,
     this.brightness,
     this.iconTheme,
@@ -398,10 +398,10 @@ class DecoratedAppBar extends StatefulWidget implements PreferredSizeWidget {
   ///  * [shadowColor], which is the color of the shadow below the app bar.
   final ShapeBorder? shape;
 
-  /// {@template flutter.material.appbar.backgroundColor}
+  /// {@template flutter.material.appbar.decoration}
   /// The fill color to use for an app bar's [Material].
   ///
-  /// If null, then the [AppBarTheme.backgroundColor] is used. If that value is also
+  /// If null, then the [AppBarTheme.decoration] is used. If that value is also
   /// null, then [DecoratedAppBar] uses the overall theme's [ColorScheme.primary] if the
   /// overall theme's brightness is [Brightness.light], and [ColorScheme.surface]
   /// if the overall theme's [brightness] is [Brightness.dark].
@@ -417,7 +417,7 @@ class DecoratedAppBar extends StatefulWidget implements PreferredSizeWidget {
   ///    default colors are based on.
   ///  * [ColorScheme.brightness], which indicates if the overall [Theme]
   ///    is light or dark.
-  final Color? backgroundColor;
+  final Decoration? decoration;
 
   /// {@template flutter.material.appbar.foregroundColor}
   /// The default color for [Text] and [Icon]s within the app bar.
@@ -716,9 +716,8 @@ class _DecoratedAppBarState extends State<DecoratedAppBar> {
     final double toolbarHeight = widget.toolbarHeight ?? kToolbarHeight;
 
     final Color backgroundColor = widget.backwardsCompatibility
-        ? widget.backgroundColor ?? appBarTheme.color ?? theme.primaryColor
-        : widget.backgroundColor ??
-            appBarTheme.backgroundColor ??
+        ? appBarTheme.color ?? theme.primaryColor
+        : appBarTheme.backgroundColor ??
             (colorScheme.brightness == Brightness.dark
                 ? colorScheme.surface
                 : colorScheme.primary);
@@ -974,7 +973,10 @@ class _DecoratedAppBarState extends State<DecoratedAppBar> {
           shape: widget.shape,
           child: Semantics(
             explicitChildNodes: true,
-            child: appBar,
+            child: Container(
+              decoration: widget.decoration,
+              child: appBar,
+            ),
           ),
         ),
       ),
@@ -1047,7 +1049,7 @@ class _SliverDecoratedAppBarDelegate extends SliverPersistentHeaderDelegate {
     required this.elevation,
     required this.shadowColor,
     required this.forceElevated,
-    required this.backgroundColor,
+    required this.decoration,
     required this.foregroundColor,
     required this.brightness,
     required this.iconTheme,
@@ -1092,7 +1094,7 @@ class _SliverDecoratedAppBarDelegate extends SliverPersistentHeaderDelegate {
   final double? elevation;
   final Color? shadowColor;
   final bool forceElevated;
-  final Color? backgroundColor;
+  final Decoration? decoration;
   final Color? foregroundColor;
   final Brightness? brightness;
   final IconThemeData? iconTheme;
@@ -1178,7 +1180,7 @@ class _SliverDecoratedAppBarDelegate extends SliverPersistentHeaderDelegate {
             ? elevation ?? 4.0
             : 0.0,
         shadowColor: shadowColor,
-        backgroundColor: backgroundColor,
+        decoration: decoration,
         foregroundColor: foregroundColor,
         brightness: brightness,
         iconTheme: iconTheme,
@@ -1215,7 +1217,7 @@ class _SliverDecoratedAppBarDelegate extends SliverPersistentHeaderDelegate {
         _bottomHeight != oldDelegate._bottomHeight ||
         elevation != oldDelegate.elevation ||
         shadowColor != oldDelegate.shadowColor ||
-        backgroundColor != oldDelegate.backgroundColor ||
+        decoration != oldDelegate.decoration ||
         foregroundColor != oldDelegate.foregroundColor ||
         brightness != oldDelegate.brightness ||
         iconTheme != oldDelegate.iconTheme ||
@@ -1341,7 +1343,7 @@ class SliverDecoratedAppBar extends StatefulWidget {
     this.elevation,
     this.shadowColor,
     this.forceElevated = false,
-    this.backgroundColor,
+    this.decoration,
     this.foregroundColor,
     this.brightness,
     this.iconTheme,
@@ -1432,10 +1434,10 @@ class SliverDecoratedAppBar extends StatefulWidget {
   /// Ignored when [elevation] is zero.
   final bool forceElevated;
 
-  /// {@macro flutter.material.appbar.backgroundColor}
+  /// {@macro flutter.material.appbar.decoration}
   ///
   /// This property is used to configure an [DecoratedAppBar].
-  final Color? backgroundColor;
+  final Decoration? decoration;
 
   /// {@macro flutter.material.appbar.foregroundColor}
   ///
@@ -1717,7 +1719,7 @@ class _SliverDecoratedAppBarState extends State<SliverDecoratedAppBar>
           elevation: widget.elevation,
           shadowColor: widget.shadowColor,
           forceElevated: widget.forceElevated,
-          backgroundColor: widget.backgroundColor,
+          decoration: widget.decoration,
           foregroundColor: widget.foregroundColor,
           brightness: widget.brightness,
           iconTheme: widget.iconTheme,
