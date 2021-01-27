@@ -1,9 +1,9 @@
 # Decorated App Bar
 
 TODO(tom): update description
-Love the material AppBar? Do you want to add more color to the appbar? Here's a DecoratedAppBar.
+Love the material DecoratedAppBar? Do you want to add more color to the DecoratedAppBar? Here's a DecoratedAppBar.
 
-It works just like the normal AppBar. Also with actions, back buttons, titles. So it's just your normal AppBar, but with a twist!
+It works just like the normal DecoratedAppBar. Also with actions, back buttons, titles. So it's just your normal DecoratedAppBar, but with a twist!
 
 ## Screenshots
 
@@ -14,7 +14,7 @@ It works just like the normal AppBar. Also with actions, back buttons, titles. S
 
 2. Import it: ```import 'package:decorated_app_bar/decorated_app_bar.dart'```
 
-3. Replace your current AppBar (In the scaffold) to DecoratedAppBar.
+3. Replace your current DecoratedAppBar (In the scaffold) to DecoratedAppBar.
 
 
 ```

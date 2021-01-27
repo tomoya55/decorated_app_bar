@@ -53,28 +53,28 @@ class _ToolbarContainerLayout extends SingleChildLayoutDelegate {
 ///
 /// App bars are typically used in the [Scaffold.appBar] property, which places
 /// the app bar as a fixed-height widget at the top of the screen. For a scrollable
-/// app bar, see [SliverAppBar], which embeds an [AppBar] in a sliver for use in
+/// app bar, see [SliverDecoratedAppBar], which embeds an [DecoratedAppBar] in a sliver for use in
 /// a [CustomScrollView].
 ///
-/// The AppBar displays the toolbar widgets, [leading], [title], and [actions],
+/// The DecoratedAppBar displays the toolbar widgets, [leading], [title], and [actions],
 /// above the [bottom] (if any). The [bottom] is usually used for a [TabBar]. If
 /// a [flexibleSpace] widget is specified then it is stacked behind the toolbar
 /// and the bottom widget. The following diagram shows where each of these slots
 /// appears in the toolbar when the writing language is left-to-right (e.g.
 /// English):
 ///
-/// The [AppBar] insets its content based on the ambient [MediaQuery]'s padding,
+/// The [DecoratedAppBar] insets its content based on the ambient [MediaQuery]'s padding,
 /// to avoid system UI intrusions. It's taken care of by [Scaffold] when used in
-/// the [Scaffold.appBar] property. When animating an [AppBar], unexpected
+/// the [Scaffold.appBar] property. When animating an [DecoratedAppBar], unexpected
 /// [MediaQuery] changes (as is common in [Hero] animations) may cause the content
-/// to suddenly jump. Wrap the [AppBar] in a [MediaQuery] widget, and adjust its
+/// to suddenly jump. Wrap the [DecoratedAppBar] in a [MediaQuery] widget, and adjust its
 /// padding such that the animation is smooth.
 ///
 /// ![The leading widget is in the top left, the actions are in the top right,
 /// the title is between them. The bottom is, naturally, at the bottom, and the
 /// flexibleSpace is behind all of them.](https://flutter.github.io/assets-for-api-docs/assets/material/app_bar.png)
 ///
-/// If the [leading] widget is omitted, but the [AppBar] is in a [Scaffold] with
+/// If the [leading] widget is omitted, but the [DecoratedAppBar] is in a [Scaffold] with
 /// a [Drawer], then a button will be inserted to open the drawer. Otherwise, if
 /// the nearest [Navigator] has any previous routes, a [BackButton] is inserted
 /// instead. This behavior can be turned off by setting the [automaticallyImplyLeading]
@@ -83,14 +83,14 @@ class _ToolbarContainerLayout extends SingleChildLayoutDelegate {
 ///
 /// {@tool dartpad --template=stateless_widget_material}
 ///
-/// This sample shows an [AppBar] with two simple actions. The first action
+/// This sample shows an [DecoratedAppBar] with two simple actions. The first action
 /// opens a [SnackBar], while the second action navigates to a new page.
 ///
 /// ```dart
 /// Widget build(BuildContext context) {
 ///   return Scaffold(
-///     appBar: AppBar(
-///       title: const Text('AppBar Demo'),
+///     appBar: DecoratedAppBar(
+///       title: const Text('DecoratedAppBar Demo'),
 ///       actions: <Widget>[
 ///         IconButton(
 ///           icon: const Icon(Icons.add_alert),
@@ -108,7 +108,7 @@ class _ToolbarContainerLayout extends SingleChildLayoutDelegate {
 ///             Navigator.push(context, MaterialPageRoute(
 ///               builder: (BuildContext context) {
 ///                 return Scaffold(
-///                   appBar: AppBar(
+///                   appBar: DecoratedAppBar(
 ///                     title: const Text('Next page'),
 ///                   ),
 ///                   body: const Center(
@@ -137,10 +137,10 @@ class _ToolbarContainerLayout extends SingleChildLayoutDelegate {
 ///
 /// See also:
 ///
-///  * [Scaffold], which displays the [AppBar] in its [Scaffold.appBar] slot.
-///  * [SliverAppBar], which uses [AppBar] to provide a flexible app bar that
+///  * [Scaffold], which displays the [DecoratedAppBar] in its [Scaffold.appBar] slot.
+///  * [SliverDecoratedAppBar], which uses [DecoratedAppBar] to provide a flexible app bar that
 ///    can be used in a [CustomScrollView].
-///  * [TabBar], which is typically placed in the [bottom] slot of the [AppBar]
+///  * [TabBar], which is typically placed in the [bottom] slot of the [DecoratedAppBar]
 ///    if the screen has multiple pages arranged in tabs.
 ///  * [IconButton], which is used with [actions] to show buttons on the app bar.
 ///  * [PopupMenuButton], to show a popup menu on the app bar, via [actions].
@@ -148,7 +148,7 @@ class _ToolbarContainerLayout extends SingleChildLayoutDelegate {
 ///    can expand and collapse.
 ///  * <https://material.io/design/components/app-bars-top.html>
 ///  * Cookbook: [Place a floating app bar above a list](https://flutter.dev/docs/cookbook/lists/floating-app-bar)
-class AppBar extends StatefulWidget implements PreferredSizeWidget {
+class DecoratedAppBar extends StatefulWidget implements PreferredSizeWidget {
   /// Creates a material design app bar.
   ///
   /// The arguments [primary], [toolbarOpacity], [bottomOpacity],
@@ -157,7 +157,7 @@ class AppBar extends StatefulWidget implements PreferredSizeWidget {
   /// be non-negative.
   ///
   /// Typically used in the [Scaffold.appBar] property.
-  AppBar({
+  DecoratedAppBar({
     Key? key,
     this.leading,
     this.automaticallyImplyLeading = true,
@@ -206,10 +206,10 @@ class AppBar extends StatefulWidget implements PreferredSizeWidget {
   /// be no bigger than [leadingWidth] and [toolbarHeight] respectively.
   ///
   /// If this is null and [automaticallyImplyLeading] is set to true, the
-  /// [AppBar] will imply an appropriate widget. For example, if the [AppBar] is
+  /// [DecoratedAppBar] will imply an appropriate widget. For example, if the [DecoratedAppBar] is
   /// in a [Scaffold] that also has a [Drawer], the [Scaffold] will fill this
   /// widget with an [IconButton] that opens the drawer (using [Icons.menu]). If
-  /// there's no [Drawer] and the parent [Navigator] can go back, the [AppBar]
+  /// there's no [Drawer] and the parent [Navigator] can go back, the [DecoratedAppBar]
   /// will use a [BackButton] that calls [Navigator.maybePop].
   /// {@endtemplate}
   ///
@@ -219,7 +219,7 @@ class AppBar extends StatefulWidget implements PreferredSizeWidget {
   /// instead of relying on [automaticallyImplyLeading]:
   ///
   /// ```dart
-  /// AppBar(
+  /// DecoratedAppBar(
   ///   leading: Builder(
   ///     builder: (BuildContext context) {
   ///       return IconButton(
@@ -241,7 +241,7 @@ class AppBar extends StatefulWidget implements PreferredSizeWidget {
   ///
   /// See also:
   ///
-  ///  * [Scaffold.appBar], in which an [AppBar] is usually placed.
+  ///  * [Scaffold.appBar], in which an [DecoratedAppBar] is usually placed.
   ///  * [Scaffold.drawer], in which the [Drawer] is usually placed.
   final Widget? leading;
 
@@ -278,7 +278,7 @@ class AppBar extends StatefulWidget implements PreferredSizeWidget {
   /// ```dart
   /// MaterialApp(
   ///   home: Scaffold(
-  ///     appBar: AppBar(
+  ///     appBar: DecoratedAppBar(
   ///        title: SizedBox(
   ///        height: toolbarHeight,
   ///        child: child: Image.asset(logoAsset),
@@ -308,7 +308,7 @@ class AppBar extends StatefulWidget implements PreferredSizeWidget {
   ///   body: CustomScrollView(
   ///     primary: true,
   ///     slivers: <Widget>[
-  ///       SliverAppBar(
+  ///       SliverDecoratedAppBar(
   ///         title: Text('Hello World'),
   ///         actions: <Widget>[
   ///           IconButton(
@@ -332,9 +332,9 @@ class AppBar extends StatefulWidget implements PreferredSizeWidget {
   /// This widget is stacked behind the toolbar and the tab bar. Its height will
   /// be the same as the app bar's overall height.
   ///
-  /// A flexible space isn't actually flexible unless the [AppBar]'s container
-  /// changes the [AppBar]'s size. A [SliverAppBar] in a [CustomScrollView]
-  /// changes the [AppBar]'s height when scrolled.
+  /// A flexible space isn't actually flexible unless the [DecoratedAppBar]'s container
+  /// changes the [DecoratedAppBar]'s size. A [SliverDecoratedAppBar] in a [CustomScrollView]
+  /// changes the [DecoratedAppBar]'s height when scrolled.
   ///
   /// Typically a [FlexibleSpaceBar]. See [FlexibleSpaceBar] for details.
   /// {@endtemplate}
@@ -402,7 +402,7 @@ class AppBar extends StatefulWidget implements PreferredSizeWidget {
   /// The fill color to use for an app bar's [Material].
   ///
   /// If null, then the [AppBarTheme.backgroundColor] is used. If that value is also
-  /// null, then [AppBar] uses the overall theme's [ColorScheme.primary] if the
+  /// null, then [DecoratedAppBar] uses the overall theme's [ColorScheme.primary] if the
   /// overall theme's brightness is [Brightness.light], and [ColorScheme.surface]
   /// if the overall theme's [brightness] is [Brightness.dark].
   /// {@endtemplate}
@@ -423,7 +423,7 @@ class AppBar extends StatefulWidget implements PreferredSizeWidget {
   /// The default color for [Text] and [Icon]s within the app bar.
   ///
   /// If null, then [AppBarTheme.foregroundColor] is used. If that
-  /// value is also null, then [AppBar] uses the overall theme's
+  /// value is also null, then [DecoratedAppBar] uses the overall theme's
   /// [ColorScheme.onPrimary] if the overall theme's brightness is
   /// [Brightness.light], and [ColorScheme.onSurface] if the overall
   /// theme's [brightness] is [Brightness.dark].
@@ -454,9 +454,9 @@ class AppBar extends StatefulWidget implements PreferredSizeWidget {
   /// If this value is null then [AppBarTheme.brightness] is used
   /// and if that's null then overall theme's brightness is used.
   ///
-  /// The AppBar is built within a `AnnotatedRegion<SystemUiOverlayStyle>`
+  /// The DecoratedAppBar is built within a `AnnotatedRegion<SystemUiOverlayStyle>`
   /// which causes [SystemChrome.setSystemUIOverlayStyle] to be called
-  /// automatically.  Apps should not enclose the AppBar with
+  /// automatically.  Apps should not enclose the DecoratedAppBar with
   /// their own [AnnotatedRegion].
   /// {@endtemplate}
   ///
@@ -468,7 +468,7 @@ class AppBar extends StatefulWidget implements PreferredSizeWidget {
   ///    default colors are based on.
   ///  * [ColorScheme.brightness], which indicates if the overall [Theme]
   ///    is light or dark.
-  ///  * [backwardsCompatibility], which forces AppBar to use this
+  ///  * [backwardsCompatibility], which forces DecoratedAppBar to use this
   ///    obsolete property.
   final Brightness? brightness;
 
@@ -556,7 +556,7 @@ class AppBar extends StatefulWidget implements PreferredSizeWidget {
   /// A value of 1.0 is fully opaque, and a value of 0.0 is fully transparent.
   ///
   /// Typically, this value is not changed from its default value (1.0). It is
-  /// used by [SliverAppBar] to animate the opacity of the toolbar when the app
+  /// used by [SliverDecoratedAppBar] to animate the opacity of the toolbar when the app
   /// bar is scrolled.
   /// {@endtemplate}
   final double toolbarOpacity;
@@ -567,7 +567,7 @@ class AppBar extends StatefulWidget implements PreferredSizeWidget {
   /// A value of 1.0 is fully opaque, and a value of 0.0 is fully transparent.
   ///
   /// Typically, this value is not changed from its default value (1.0). It is
-  /// used by [SliverAppBar] to animate the opacity of the toolbar when the app
+  /// used by [SliverDecoratedAppBar] to animate the opacity of the toolbar when the app
   /// bar is scrolled.
   /// {@endtemplate}
   final double bottomOpacity;
@@ -582,7 +582,7 @@ class AppBar extends StatefulWidget implements PreferredSizeWidget {
   final Size preferredSize;
 
   /// {@template flutter.material.appbar.toolbarHeight}
-  /// Defines the height of the toolbar component of an [AppBar].
+  /// Defines the height of the toolbar component of an [DecoratedAppBar].
   ///
   /// By default, the value of `toolbarHeight` is [kToolbarHeight].
   /// {@endtemplate}
@@ -612,7 +612,7 @@ class AppBar extends StatefulWidget implements PreferredSizeWidget {
   final bool backwardsCompatibility;
 
   /// {@template flutter.material.appbar.toolbarTextStyle}
-  /// The default text style for the AppBar's [leading], and
+  /// The default text style for the DecoratedAppBar's [leading], and
   /// [actions] widgets, but not its [title].
   ///
   /// If this property is null, then [AppBarTheme.toolbarTextStyle] of
@@ -629,7 +629,7 @@ class AppBar extends StatefulWidget implements PreferredSizeWidget {
   final TextStyle? toolbarTextStyle;
 
   /// {@template flutter.material.appbar.titleTextStyle}
-  /// The default text style for the AppBar's [title] widget.
+  /// The default text style for the DecoratedAppBar's [title] widget.
   ///
   /// If this property is null, then [AppBarTheme.titleTextStyle] of
   /// [ThemeData.appBarTheme] is used. If that is also null, the default
@@ -639,24 +639,24 @@ class AppBar extends StatefulWidget implements PreferredSizeWidget {
   ///
   /// See also:
   ///
-  ///  * [toolbarTextStyle], which is the default text style for the AppBar's
+  ///  * [toolbarTextStyle], which is the default text style for the DecoratedAppBar's
   ///    [title], [leading], and [actions] widgets, also known as the
-  ///    AppBar's "toolbar".
+  ///    DecoratedAppBar's "toolbar".
   ///  * [DefaultTextStyle], which overrides the default text style for all of the
   ///    the widgets in a subtree.
   final TextStyle? titleTextStyle;
 
   /// {@template flutter.material.appbar.systemOverlayStyle}
-  /// Specifies the style to use for the system overlays that overlap the AppBar.
+  /// Specifies the style to use for the system overlays that overlap the DecoratedAppBar.
   ///
   /// If this property is null, then [SystemUiOverlayStyle.light] is used if the
   /// overall theme is dark, [SystemUiOverlayStyle.dark] otherwise. Theme brightness
   /// is defined by [ColorScheme.brightness] for [ThemeData.colorScheme].
   ///
-  /// The AppBar's descendants are built within a
+  /// The DecoratedAppBar's descendants are built within a
   /// `AnnotatedRegion<SystemUiOverlayStyle>` widget, which causes
   /// [SystemChrome.setSystemUIOverlayStyle] to be called
-  /// automatically.  Apps should not enclose an AppBar with their
+  /// automatically.  Apps should not enclose an DecoratedAppBar with their
   /// own [AnnotatedRegion].
   /// {@endtemplate}
   //
@@ -682,10 +682,10 @@ class AppBar extends StatefulWidget implements PreferredSizeWidget {
   }
 
   @override
-  _AppBarState createState() => _AppBarState();
+  _DecoratedAppBarState createState() => _DecoratedAppBarState();
 }
 
-class _AppBarState extends State<AppBar> {
+class _DecoratedAppBarState extends State<DecoratedAppBar> {
   static const double _defaultElevation = 4.0;
   static const Color _defaultShadowColor = Color(0xFF000000);
 
@@ -809,7 +809,7 @@ class _AppBarState extends State<AppBar> {
           break;
       }
 
-      title = _AppBarTitleBox(child: title);
+      title = _DecoratedAppBarTitleBox(child: title);
       if (!widget.excludeHeaderSemantics) {
         title = Semantics(
           namesRoute: namesRoute,
@@ -982,18 +982,20 @@ class _AppBarState extends State<AppBar> {
   }
 }
 
-class _FloatingAppBar extends StatefulWidget {
-  const _FloatingAppBar({Key? key, required this.child}) : super(key: key);
+class _FloatingDecoratedAppBar extends StatefulWidget {
+  const _FloatingDecoratedAppBar({Key? key, required this.child})
+      : super(key: key);
 
   final Widget child;
 
   @override
-  _FloatingAppBarState createState() => _FloatingAppBarState();
+  _FloatingDecoratedAppBarState createState() =>
+      _FloatingDecoratedAppBarState();
 }
 
-// A wrapper for the widget created by _SliverAppBarDelegate that starts and
+// A wrapper for the widget created by _SliverDecoratedAppBarDelegate that starts and
 // stops the floating app bar's snap-into-view or snap-out-of-view animation.
-class _FloatingAppBarState extends State<_FloatingAppBar> {
+class _FloatingDecoratedAppBarState extends State<_FloatingDecoratedAppBar> {
   ScrollPosition? _position;
 
   @override
@@ -1021,7 +1023,7 @@ class _FloatingAppBarState extends State<_FloatingAppBar> {
   void _isScrollingListener() {
     if (_position == null) return;
 
-    // When a scroll stops, then maybe snap the appbar into view.
+    // When a scroll stops, then maybe snap the DecoratedAppBar into view.
     // Similarly, when a scroll starts, then maybe stop the snap animation.
     final RenderSliverFloatingPersistentHeader? header = _headerRenderer();
     if (_position!.isScrollingNotifier.value)
@@ -1034,8 +1036,8 @@ class _FloatingAppBarState extends State<_FloatingAppBar> {
   Widget build(BuildContext context) => widget.child;
 }
 
-class _SliverAppBarDelegate extends SliverPersistentHeaderDelegate {
-  _SliverAppBarDelegate({
+class _SliverDecoratedAppBarDelegate extends SliverPersistentHeaderDelegate {
+  _SliverDecoratedAppBarDelegate({
     required this.leading,
     required this.automaticallyImplyLeading,
     required this.title,
@@ -1160,7 +1162,7 @@ class _SliverAppBarDelegate extends SliverPersistentHeaderDelegate {
       maxExtent: maxExtent,
       currentExtent: math.max(minExtent, maxExtent - shrinkOffset),
       toolbarOpacity: toolbarOpacity,
-      child: AppBar(
+      child: DecoratedAppBar(
         leading: leading,
         automaticallyImplyLeading: automaticallyImplyLeading,
         title: title,
@@ -1199,11 +1201,11 @@ class _SliverAppBarDelegate extends SliverPersistentHeaderDelegate {
         systemOverlayStyle: systemOverlayStyle,
       ),
     );
-    return floating ? _FloatingAppBar(child: appBar) : appBar;
+    return floating ? _FloatingDecoratedAppBar(child: appBar) : appBar;
   }
 
   @override
-  bool shouldRebuild(covariant _SliverAppBarDelegate oldDelegate) {
+  bool shouldRebuild(covariant _SliverDecoratedAppBarDelegate oldDelegate) {
     return leading != oldDelegate.leading ||
         automaticallyImplyLeading != oldDelegate.automaticallyImplyLeading ||
         title != oldDelegate.title ||
@@ -1258,9 +1260,9 @@ class _SliverAppBarDelegate extends SliverPersistentHeaderDelegate {
 /// [CustomScrollView], which lets the app bar integrate with the scroll view so
 /// that it can vary in height according to the scroll offset or float above the
 /// other content in the scroll view. For a fixed-height app bar at the top of
-/// the screen see [AppBar], which is used in the [Scaffold.appBar] slot.
+/// the screen see [DecoratedAppBar], which is used in the [Scaffold.appBar] slot.
 ///
-/// The AppBar displays the toolbar widgets, [leading], [title], and
+/// The DecoratedAppBar displays the toolbar widgets, [leading], [title], and
 /// [actions], above the [bottom] (if any). If a [flexibleSpace] widget is
 /// specified then it is stacked behind the toolbar and the bottom widget.
 ///
@@ -1270,7 +1272,7 @@ class _SliverAppBarDelegate extends SliverPersistentHeaderDelegate {
 /// [CustomScrollView.slivers] list:
 ///
 /// ```dart
-/// SliverAppBar(
+/// SliverDecoratedAppBar(
 ///   expandedHeight: 150.0,
 ///   flexibleSpace: const FlexibleSpaceBar(
 ///     title: Text('Available seats'),
@@ -1313,22 +1315,22 @@ class _SliverAppBarDelegate extends SliverPersistentHeaderDelegate {
 ///
 /// See also:
 ///
-///  * [CustomScrollView], which integrates the [SliverAppBar] into its
+///  * [CustomScrollView], which integrates the [SliverDecoratedAppBar] into its
 ///    scrolling.
-///  * [AppBar], which is a fixed-height app bar for use in [Scaffold.appBar].
-///  * [TabBar], which is typically placed in the [bottom] slot of the [AppBar]
+///  * [DecoratedAppBar], which is a fixed-height app bar for use in [Scaffold.appBar].
+///  * [TabBar], which is typically placed in the [bottom] slot of the [DecoratedAppBar]
 ///    if the screen has multiple pages arranged in tabs.
 ///  * [IconButton], which is used with [actions] to show buttons on the app bar.
 ///  * [PopupMenuButton], to show a popup menu on the app bar, via [actions].
 ///  * [FlexibleSpaceBar], which is used with [flexibleSpace] when the app bar
 ///    can expand and collapse.
 ///  * <https://material.io/design/components/app-bars-top.html>
-class SliverAppBar extends StatefulWidget {
+class SliverDecoratedAppBar extends StatefulWidget {
   /// Creates a material design app bar that can be placed in a [CustomScrollView].
   ///
   /// The arguments [forceElevated], [primary], [floating], [pinned], [snap]
   /// and [automaticallyImplyLeading] must not be null.
-  const SliverAppBar({
+  const SliverDecoratedAppBar({
     Key? key,
     this.leading,
     this.automaticallyImplyLeading = true,
@@ -1381,49 +1383,49 @@ class SliverAppBar extends StatefulWidget {
 
   /// {@macro flutter.material.appbar.leading}
   ///
-  /// This property is used to configure an [AppBar].
+  /// This property is used to configure an [DecoratedAppBar].
   final Widget? leading;
 
   /// {@macro flutter.material.appbar.automaticallyImplyLeading}
   ///
-  /// This property is used to configure an [AppBar].
+  /// This property is used to configure an [DecoratedAppBar].
   final bool automaticallyImplyLeading;
 
   /// {@macro flutter.material.appbar.title}
   ///
-  /// This property is used to configure an [AppBar].
+  /// This property is used to configure an [DecoratedAppBar].
   final Widget? title;
 
   /// {@macro flutter.material.appbar.actions}
   ///
-  /// This property is used to configure an [AppBar].
+  /// This property is used to configure an [DecoratedAppBar].
   final List<Widget>? actions;
 
   /// {@macro flutter.material.appbar.flexibleSpace}
   ///
-  /// This property is used to configure an [AppBar].
+  /// This property is used to configure an [DecoratedAppBar].
   final Widget? flexibleSpace;
 
   /// {@macro flutter.material.appbar.bottom}
   ///
-  /// This property is used to configure an [AppBar].
+  /// This property is used to configure an [DecoratedAppBar].
   final PreferredSizeWidget? bottom;
 
   /// {@macro flutter.material.appbar.elevation}
   ///
-  /// This property is used to configure an [AppBar].
+  /// This property is used to configure an [DecoratedAppBar].
   final double? elevation;
 
   /// {@macro flutter.material.appbar.shadowColor}
   ///
-  /// This property is used to configure an [AppBar].
+  /// This property is used to configure an [DecoratedAppBar].
   final Color? shadowColor;
 
   /// Whether to show the shadow appropriate for the [elevation] even if the
-  /// content is not scrolled under the [AppBar].
+  /// content is not scrolled under the [DecoratedAppBar].
   ///
   /// Defaults to false, meaning that the [elevation] is only applied when the
-  /// [AppBar] is being displayed over content that is scrolled under it.
+  /// [DecoratedAppBar] is being displayed over content that is scrolled under it.
   ///
   /// When set to true, the [elevation] is applied regardless.
   ///
@@ -1432,52 +1434,52 @@ class SliverAppBar extends StatefulWidget {
 
   /// {@macro flutter.material.appbar.backgroundColor}
   ///
-  /// This property is used to configure an [AppBar].
+  /// This property is used to configure an [DecoratedAppBar].
   final Color? backgroundColor;
 
   /// {@macro flutter.material.appbar.foregroundColor}
   ///
-  /// This property is used to configure an [AppBar].
+  /// This property is used to configure an [DecoratedAppBar].
   final Color? foregroundColor;
 
   /// {@macro flutter.material.appbar.brightness}
   ///
-  /// This property is used to configure an [AppBar].
+  /// This property is used to configure an [DecoratedAppBar].
   final Brightness? brightness;
 
   /// {@macro flutter.material.appbar.iconTheme}
   ///
-  /// This property is used to configure an [AppBar].
+  /// This property is used to configure an [DecoratedAppBar].
   final IconThemeData? iconTheme;
 
   /// {@macro flutter.material.appbar.actionsIconTheme}
   ///
-  /// This property is used to configure an [AppBar].
+  /// This property is used to configure an [DecoratedAppBar].
   final IconThemeData? actionsIconTheme;
 
   /// {@macro flutter.material.appbar.textTheme}
   ///
-  /// This property is used to configure an [AppBar].
+  /// This property is used to configure an [DecoratedAppBar].
   final TextTheme? textTheme;
 
   /// {@macro flutter.material.appbar.primary}
   ///
-  /// This property is used to configure an [AppBar].
+  /// This property is used to configure an [DecoratedAppBar].
   final bool primary;
 
   /// {@macro flutter.material.appbar.centerTitle}
   ///
-  /// This property is used to configure an [AppBar].
+  /// This property is used to configure an [DecoratedAppBar].
   final bool? centerTitle;
 
   /// {@macro flutter.material.appbar.excludeHeaderSemantics}
   ///
-  /// This property is used to configure an [AppBar].
+  /// This property is used to configure an [DecoratedAppBar].
   final bool excludeHeaderSemantics;
 
   /// {@macro flutter.material.appbar.titleSpacing}
   ///
-  /// This property is used to configure an [AppBar].
+  /// This property is used to configure an [DecoratedAppBar].
   final double? titleSpacing;
 
   /// Defines the height of the app bar when it is collapsed.
@@ -1524,7 +1526,7 @@ class SliverAppBar extends StatefulWidget {
   ///
   /// See also:
   ///
-  ///  * [SliverAppBar] for more animated examples of how this property changes the
+  ///  * [SliverDecoratedAppBar] for more animated examples of how this property changes the
   ///    behavior of the app bar in combination with [pinned] and [snap].
   final bool floating;
 
@@ -1545,13 +1547,13 @@ class SliverAppBar extends StatefulWidget {
   ///
   /// See also:
   ///
-  ///  * [SliverAppBar] for more animated examples of how this property changes the
+  ///  * [SliverDecoratedAppBar] for more animated examples of how this property changes the
   ///    behavior of the app bar in combination with [floating].
   final bool pinned;
 
   /// {@macro flutter.material.appbar.shape}
   ///
-  /// This property is used to configure an [AppBar].
+  /// This property is used to configure an [DecoratedAppBar].
   final ShapeBorder? shape;
 
   /// If [snap] and [floating] are true then the floating app bar will "snap"
@@ -1582,7 +1584,7 @@ class SliverAppBar extends StatefulWidget {
   ///
   /// See also:
   ///
-  ///  * [SliverAppBar] for more animated examples of how this property changes the
+  ///  * [SliverDecoratedAppBar] for more animated examples of how this property changes the
   ///    behavior of the app bar in combination with [pinned] and [floating].
   final bool snap;
 
@@ -1603,41 +1605,41 @@ class SliverAppBar extends StatefulWidget {
 
   /// {@macro flutter.material.appbar.toolbarHeight}
   ///
-  /// This property is used to configure an [AppBar].
+  /// This property is used to configure an [DecoratedAppBar].
   final double toolbarHeight;
 
   /// {@macro flutter.material.appbar.leadingWidth}
   ///
-  /// This property is used to configure an [AppBar].
+  /// This property is used to configure an [DecoratedAppBar].
   final double? leadingWidth;
 
   /// {@macro flutter.material.appbar.backwardsCompatibility}
   ///
-  /// This property is used to configure an [AppBar].
+  /// This property is used to configure an [DecoratedAppBar].
   final bool backwardsCompatibility;
 
   /// {@macro flutter.material.appbar.toolbarTextStyle}
   ///
-  /// This property is used to configure an [AppBar].
+  /// This property is used to configure an [DecoratedAppBar].
   final TextStyle? toolbarTextStyle;
 
   /// {@macro flutter.material.appbar.titleTextStyle}
   ///
-  /// This property is used to configure an [AppBar].
+  /// This property is used to configure an [DecoratedAppBar].
   final TextStyle? titleTextStyle;
 
   /// {@macro flutter.material.appbar.systemOverlayStyle}
   ///
-  /// This property is used to configure an [AppBar].
+  /// This property is used to configure an [DecoratedAppBar].
   final SystemUiOverlayStyle? systemOverlayStyle;
 
   @override
-  _SliverAppBarState createState() => _SliverAppBarState();
+  _SliverDecoratedAppBarState createState() => _SliverDecoratedAppBarState();
 }
 
 // This class is only Stateful because it owns the TickerProvider used
-// by the floating appbar snap animation (via FloatingHeaderSnapConfiguration).
-class _SliverAppBarState extends State<SliverAppBar>
+// by the floating DecoratedAppBar snap animation (via FloatingHeaderSnapConfiguration).
+class _SliverDecoratedAppBarState extends State<SliverDecoratedAppBar>
     with TickerProviderStateMixin {
   FloatingHeaderSnapConfiguration? _snapConfiguration;
   OverScrollHeaderStretchConfiguration? _stretchConfiguration;
@@ -1678,7 +1680,7 @@ class _SliverAppBarState extends State<SliverAppBar>
   }
 
   @override
-  void didUpdateWidget(SliverAppBar oldWidget) {
+  void didUpdateWidget(SliverDecoratedAppBar oldWidget) {
     super.didUpdateWidget(oldWidget);
     if (widget.snap != oldWidget.snap || widget.floating != oldWidget.floating)
       _updateSnapConfiguration();
@@ -1704,7 +1706,7 @@ class _SliverAppBarState extends State<SliverAppBar>
       child: SliverPersistentHeader(
         floating: widget.floating,
         pinned: widget.pinned,
-        delegate: _SliverAppBarDelegate(
+        delegate: _SliverDecoratedAppBarDelegate(
           vsync: this,
           leading: widget.leading,
           automaticallyImplyLeading: widget.automaticallyImplyLeading,
@@ -1746,30 +1748,30 @@ class _SliverAppBarState extends State<SliverAppBar>
   }
 }
 
-// Layout the AppBar's title with unconstrained height, vertically
+// Layout the DecoratedAppBar's title with unconstrained height, vertically
 // center it within its (NavigationToolbar) parent, and allow the
 // parent to constrain the title's actual height.
-class _AppBarTitleBox extends SingleChildRenderObjectWidget {
-  const _AppBarTitleBox({Key? key, required Widget child})
+class _DecoratedAppBarTitleBox extends SingleChildRenderObjectWidget {
+  const _DecoratedAppBarTitleBox({Key? key, required Widget child})
       : assert(child != null),
         super(key: key, child: child);
 
   @override
-  _RenderAppBarTitleBox createRenderObject(BuildContext context) {
-    return _RenderAppBarTitleBox(
+  _RenderDecoratedAppBarTitleBox createRenderObject(BuildContext context) {
+    return _RenderDecoratedAppBarTitleBox(
       textDirection: Directionality.of(context),
     );
   }
 
   @override
   void updateRenderObject(
-      BuildContext context, _RenderAppBarTitleBox renderObject) {
+      BuildContext context, _RenderDecoratedAppBarTitleBox renderObject) {
     renderObject.textDirection = Directionality.of(context);
   }
 }
 
-class _RenderAppBarTitleBox extends RenderAligningShiftedBox {
-  _RenderAppBarTitleBox({
+class _RenderDecoratedAppBarTitleBox extends RenderAligningShiftedBox {
+  _RenderDecoratedAppBarTitleBox({
     RenderBox? child,
     TextDirection? textDirection,
   }) : super(
