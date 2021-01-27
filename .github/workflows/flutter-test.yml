@@ -23,11 +23,9 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-      - uses: subosito/flutter-action@v1
+      - uses: subosito/flutter-action@v1.4.0
         with:
           channel: "beta"
-        env:
-          ACTIONS_STEP_DEBUG: true
       - run: flutter pub get
       - run: flutter test
       - name: Slack Notification
