@@ -1,6 +1,6 @@
 name: decorated_app_bar
 description: Customize app bar with any decoration whatever you like. Notice that we follow the same version policy with flutter framework, so that you won't get any inconsistency with the official AppBar.
-version: 1.22.4
+version: 1.25.0-8.3.pre
 author: Tom Hirano <tom@nicecabbage.com>
 homepage: https://github.com/tomoya55/decorated_app_bar
 

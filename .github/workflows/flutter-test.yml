@@ -1,0 +1,42 @@
+name: Flutter Test
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - ".github/workflows/flutter-test.yml"
+      - "!**.md"
+  pull_request:
+    branches:
+      - main
+    paths:
+      - ".github/workflows/flutter-test.yml"
+      - "!**.md"
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: flutter
+
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-java@v1
+        with:
+          java-version: "12.x"
+      - uses: subosito/flutter-action@v1
+        with:
+          channel: "beta"
+      - run: flutter pub get
+      - run: flutter test
+      - name: Slack Notification
+        uses: lazy-actions/slatify@master
+        if: always()
+        with:
+          type: ${{ job.status }}
+          job_name: '*DecoratedAppBar test*'
+          channel: '#dev'
+          url: ${{ secrets.SLACK_WEBHOOK }}
+
